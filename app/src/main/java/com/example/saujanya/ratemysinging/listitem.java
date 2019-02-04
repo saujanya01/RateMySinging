@@ -7,11 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+
 public class listitem extends RecyclerView.Adapter<listitem.descViewHolder>
 {
-    String[] name;
-    int[] age;
-    public listitem(String[] name, int[] age)
+    String name[];
+    String age[];
+    public listitem(String name[],String age[])
     {
         this.name=name;
         this.age=age;
@@ -29,26 +34,26 @@ public class listitem extends RecyclerView.Adapter<listitem.descViewHolder>
     public void onBindViewHolder(@NonNull descViewHolder descViewHolder, int position)
     {
         String n=name[position];
-        int a=age[position];
-        descViewHolder.age.setText(Integer.toString(a));
-        descViewHolder.name.setText(n);
+        String a=age[position];
+        descViewHolder.ag.setText(a);
+        descViewHolder.nam.setText(n);
     }
 
     @Override
     public int getItemCount()
     {
-        return name.length;
+        return Integer.parseInt(database.dkey)+1;
     }
 
     public class descViewHolder extends RecyclerView.ViewHolder
     {
-        TextView name,age;
+        TextView nam,ag;
 
         public descViewHolder(@NonNull View itemView)
         {
             super(itemView);
-            name=itemView.findViewById(R.id.name);
-            age=itemView.findViewById(R.id.age);
+            nam=itemView.findViewById(R.id.name);
+            ag=itemView.findViewById(R.id.age);
         }
     }
 }
